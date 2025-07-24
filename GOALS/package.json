@@ -1,0 +1,28 @@
+{
+  "name": "smart-goal-planner",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.6.0",
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0"
+  },
+  "description": "Smart Goal Planner is a modern web application built with React and Vite that helps users set, track, and manage financial goals. It uses a mock REST API powered by json-server for goal storage.",
+  "keywords": [],
+  "license": "ISC"
+}
