@@ -4,7 +4,7 @@ import GoalForm from './components/GoalForm';
 import Overview from './components/Overview';
 import './App.css';
 
-const API_URL = 'http://localhost:4000/goals';
+const API_URL = 'http://localhost:3000/goals';
 
 function App() {
   const [goals, setGoals] = useState([]);
