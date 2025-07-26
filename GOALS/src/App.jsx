@@ -117,7 +117,7 @@ function App() {
         </div>
       </main>
       <footer className="App-footer">
-        <p>© 2025 Smart Goal Planner - Track your financial goals with ease</p>
+        <p>© 2025 Smart Goal Planner - <b><i>TRACK YOUR FINANCIAL GOALS WITH MARTINS TRACKER</i></b></p>
       </footer>
     </div>
   );
