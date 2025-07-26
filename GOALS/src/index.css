@@ -1,15 +1,361 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  min-height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+h3 {
+  font-size: 1.25rem;
+  color: #2d3748;
+  text-align: center;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1rem;
+  color: #4a5568;
+  text-align: center;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1rem;
+  color: #4a5568;
+  text-align: center;
+  line-height: 1.6;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin: 0.5rem 0;
+  color: white;
+}
+button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+input {
+  padding: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.9);
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: rgba(102, 126, 234, 0.6);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  transform: translateY(-1px);
+}
+textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+textarea:focus {
+  border-color: blueviolet;
+  outline: none;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+.header {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.navbar a {
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+}
+.navbar a:hover {
+  text-decoration: underline;
+}
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.card h3 {
+  margin-top: 0;
+  color: white;
+}
+.card p {
+  color: white;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.table th,
+.table td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+.table th {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+.table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.table tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.table a {
+  color: blueviolet;
+  text-decoration: none;
+}
+.table a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+  .container {
+    padding: 0.5rem;
+  }
+  .header,
+  .footer,
+  .navbar {
+    padding: 0.5rem;
+  }
+  .card {
+    padding: 0.5rem;
+  }
+  .table th,
+  .table td {
+    padding: 0.25rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  h4 {
+    font-size: 0.875rem;
+  }
+  p {
+    font-size: 0.875rem;
+  }
+  button {
+    padding: 0.25rem 0.5rem;
+  }
+  input,
+  textarea {
+    padding: 0.25rem;
+  }
+  .navbar a {
+    margin: 0 0.5rem;
+  }
+  .card h3 {
+    font-size: 1.25rem;
+  }
+  .card p {
+    font-size: 0.875rem;
+  }
+  .table th,
+  .table td {
+    font-size: 0.875rem;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    font-size: 0.8rem;
+  }
+  .container {
+    padding: 0.25rem;
+  }
+  .header,
+  .footer,
+  .navbar {
+    padding: 0.25rem;
+  }
+  .card {
+    padding: 0.25rem;
+  }
+  .table th,
+  .table td {
+    padding: 0.125rem;
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h3 {
+    font-size: 0.875rem;
+  }
+  h4 {
+    font-size: 0.75rem;
+  }
+  p {
+    font-size: 0.75rem;
+  }
+  button {
+    padding: 0.125rem 0.25rem;
+  }
+  input,
+  textarea {
+    padding: 0.125rem;
+  }
+  .navbar a {
+    margin: 0 0.25rem;
+  }
+  .card h3 {
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 0.75rem;
+  }
+  .table th,
+  .table td {
+    font-size: 0.75rem;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  .header,
+  .footer,
+  .navbar,
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+  a {
+    color: #bb86fc;
+  }
+  a:hover {
+    color: #3700b3;
+  }
+  .table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+  .table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  button {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+  }
+  button:hover {
+    background-color: #333;
+  }
+  input,
+  textarea {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #333;
+  }
+  input:focus,
+  textarea:focus {
+    border-color: #bb86fc;
+    outline: none;
+  }
+  .container {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }

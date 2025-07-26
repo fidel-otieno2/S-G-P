@@ -1,17 +1,18 @@
 
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #f8f9fa;
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
-  --text-color: #333;
-  --light-text: #6c757d;
-  --border-radius: 8px;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --hover-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --transition: 0.2s;
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --info-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --card-gradient: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  --text-color: #2d3748;
+  --light-text: #718096;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .App {
@@ -20,20 +21,25 @@
   width: 1200px;
   margin: 0 auto;
   padding: 1rem;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  min-height: 100vh;
 }
 
 .App-header {
   margin-bottom: 2rem;
-  background-color: var(--primary-color);
+  background: var(--primary-gradient);
   color: white;
-  padding: 1.25rem;
+  padding: 2rem;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .header-buttons {
@@ -43,18 +49,21 @@
 }
 
 .filter-button {
-  background-color: white;
-  color: var(--primary-color);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: calc(var(--border-radius) / 2);
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
   cursor: pointer;
-  font-weight: bold;
-  transition: all var(--transition);
+  font-weight: 600;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
 }
 
 .filter-button:hover {
-  background-color: #f0f0f0;
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 h1 {
@@ -101,12 +110,15 @@ main {
 }
 
 .App-footer {
-  margin-top: 50px;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  color: #6c757d;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--card-gradient);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--border-radius);
+  color: #718096;
   font-size: 14px;
+  box-shadow: var(--box-shadow);
 }
 
 @media (max-width: 992px) {
@@ -140,15 +152,25 @@ main {
 }
 
 .overview {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--info-gradient);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: var(--transition);
+}
+
+.overview:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
 }
 
 .overview h2 {
   margin-top: 0;
-  color: #2c3e50;
+  color: #2d3748;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .overview ul {
@@ -178,17 +200,27 @@ main {
 }
 
 .form-container {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background: var(--success-gradient);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: var(--transition);
+}
+
+.form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
 }
 
 .form-container h2 {
   margin-top: 0;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 form {
@@ -210,34 +242,38 @@ label {
 }
 
 form input, form select {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
   font-size: 16px;
+  background: rgba(255,255,255,0.9);
+  transition: var(--transition);
 }
 
 form input:focus, form select:focus {
   outline: none;
-  border-color: #2c3e50;
-  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
+  border-color: rgba(255,255,255,0.6);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+  transform: translateY(-2px);
 }
 
 .submit-button {
-  padding: 12px 20px;
-  background-color: #2c3e50;
+  padding: 1rem 2rem;
+  background: var(--secondary-gradient);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: var(--transition);
   font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
+  font-weight: 600;
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .submit-button:hover {
-  background-color: #1a252f;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .goal-list {
@@ -247,71 +283,103 @@ form input:focus, form select:focus {
 }
 
 .goal-item {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--card-gradient);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
   text-align: left;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .goal-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: var(--hover-shadow);
+}
+
+.goal-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--warning-gradient);
 }
 
 .goal-item h3 {
   margin-top: 0;
-  color: #2c3e50;
+  color: #2d3748;
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .goal-item progress {
   width: 100%;
-  height: 20px;
-  margin: 10px 0;
-  border-radius: 10px;
+  height: 12px;
+  margin: 1rem 0;
+  border-radius: 6px;
   overflow: hidden;
+  background: rgba(255,255,255,0.3);
+}
+
+.goal-item progress::-webkit-progress-bar {
+  background: rgba(255,255,255,0.3);
+  border-radius: 6px;
+}
+
+.goal-item progress::-webkit-progress-value {
+  background: var(--success-gradient);
+  border-radius: 6px;
 }
 
 .goal-item button {
-  margin-right: 10px;
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #2c3e50;
+  margin-right: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--secondary-gradient);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .goal-item button:hover {
-  background-color: #1a252f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 /* Status-specific styling */
-.completed {
-  border-left: 5px solid var(--success-color);
+.completed::before {
+  background: var(--success-gradient);
 }
 
-.overdue {
-  border-left: 5px solid var(--danger-color);
+.overdue::before {
+  background: var(--danger-gradient);
 }
 
-.near-deadline {
-  border-left: 5px solid var(--warning-color);
+.near-deadline::before {
+  background: var(--warning-gradient);
 }
 
-.on-track {
-  border-left: 5px solid var(--info-color);
+.on-track::before {
+  background: var(--info-gradient);
 }
 
 /* Deposit form styling */
 .deposit-form {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f0f8ff;
-  border-radius: 4px;
-  box-shadow: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 .deposit-input-group {
@@ -324,10 +392,10 @@ form input:focus, form select:focus {
 }
 
 .deposit-input-group button {
-  background-color: var(--success-color);
+  background: var(--success-gradient);
 }
 
 .deposit-input-group button:hover {
-  background-color: #218838;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
