@@ -2,68 +2,66 @@ import React, { useState, useEffect } from 'react';
 import GoalList from './components/GoalList';
 import GoalForm from './components/GoalForm';
 import Overview from './components/Overview';
+import { initialGoals } from './data/initialGoals';
 import './App.css';
-
-const API_URL = 'http://localhost:3000/goals';
 
 function App() {
   const [goals, setGoals] = useState([]);
   const [showFarGoals, setShowFarGoals] = useState(false);
 
-  // Fetch goals from db.json on mount
+  // Load goals from localStorage or use initial data
   useEffect(() => {
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => setGoals(data))
-      .catch(() => setGoals([]));
+    const savedGoals = localStorage.getItem('goals');
+    if (savedGoals) {
+      setGoals(JSON.parse(savedGoals));
+    } else {
+      setGoals(initialGoals);
+      localStorage.setItem('goals', JSON.stringify(initialGoals));
+    }
   }, []);
 
-  // Add a new goal and save to db.json via json-server
-  const handleAddGoal = async (newGoal) => {
+  // Save goals to localStorage
+  const saveGoals = (updatedGoals) => {
+    localStorage.setItem('goals', JSON.stringify(updatedGoals));
+  };
+
+  // Add a new goal
+  const handleAddGoal = (newGoal) => {
     const newGoalWithId = {
       ...newGoal,
       id: Date.now().toString(),
       createdAt: new Date().toISOString(),
     };
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newGoalWithId),
-    });
-    const savedGoal = await res.json();
-    setGoals([...goals, savedGoal]);
+    const updatedGoals = [...goals, newGoalWithId];
+    setGoals(updatedGoals);
+    saveGoals(updatedGoals);
   };
 
-  // Update an existing goal in db.json
-  const handleUpdateGoal = async (updatedGoal) => {
-    await fetch(`${API_URL}/${updatedGoal.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedGoal),
-    });
-    setGoals(goals.map(goal => goal.id === updatedGoal.id ? updatedGoal : goal));
+  // Update an existing goal
+  const handleUpdateGoal = (updatedGoal) => {
+    const updatedGoals = goals.map(goal => goal.id === updatedGoal.id ? updatedGoal : goal);
+    setGoals(updatedGoals);
+    saveGoals(updatedGoals);
   };
 
-  // Delete a goal from db.json
-  const handleDeleteGoal = async (goalId) => {
-    await fetch(`${API_URL}/${goalId}`, { method: 'DELETE' });
-    setGoals(goals.filter(goal => goal.id !== goalId));
+  // Delete a goal
+  const handleDeleteGoal = (goalId) => {
+    const updatedGoals = goals.filter(goal => goal.id !== goalId);
+    setGoals(updatedGoals);
+    saveGoals(updatedGoals);
   };
 
-  // Make a deposit to a goal and update db.json
-  const handleDeposit = async (goalId, amount) => {
+  // Make a deposit to a goal
+  const handleDeposit = (goalId, amount) => {
     const goal = goals.find(g => g.id === goalId);
     if (!goal) return;
     const updatedGoal = {
       ...goal,
       savedAmount: goal.savedAmount + amount
     };
-    await fetch(`${API_URL}/${goalId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedGoal),
-    });
-    setGoals(goals.map(g => g.id === goalId ? updatedGoal : g));
+    const updatedGoals = goals.map(g => g.id === goalId ? updatedGoal : g);
+    setGoals(updatedGoals);
+    saveGoals(updatedGoals);
   };
 
   // Filter goals that are 24 days or more from deadline
@@ -89,9 +87,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Smart Goal Planner</h1>
-        <button onClick={filterFarGoals} className="filter-button">
-          {showFarGoals ? "Show All Goals" : "Show Goals 24+ Days Away"}
-        </button>
+        <div className="header-buttons">
+          <button onClick={filterFarGoals} className="filter-button">
+            {showFarGoals ? "Show All Goals" : "Show Goals 24+ Days Away"}
+          </button>
+        </div>
       </header>
       <main>
         <div className="dashboard-container">

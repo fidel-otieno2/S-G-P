@@ -36,6 +36,12 @@
   gap: 1rem;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .filter-button {
   background-color: white;
   color: var(--primary-color);
