@@ -100,7 +100,7 @@ function App() {
             <GoalForm onAddGoal={handleAddGoal} />
           </div>
           <div className="dashboard-right">
-            <h2>Your Goals</h2>
+            <h2><b><i>MY PERSONAL GOALS</i></b></h2>
             {filteredGoals.length === 0 ? (
               <div className="no-goals-message">
                 <p>No goals found. Create your first goal to get started!</p>
