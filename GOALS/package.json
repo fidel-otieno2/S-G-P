@@ -1,4 +1,3 @@
-
 {
   "name": "smart-goal-planner",
   "version": "1.0.0",
@@ -23,7 +22,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0"
   },
-  "description": "Smart Goal Planner is a modern web application built with React and Vite that helps users set, track, and manage financial goals. It uses a mock REST API powered by json-server for goal storage.",
-  "keywords": [],
+  "description": "Smart Goal Planner is a modern React + Vite web app for setting and tracking personal financial goals. It uses localStorage for storing user goals without requiring any backend or API.",
+  "keywords": ["react", "vite", "goals", "financial-planner", "localStorage"],
   "license": "ISC"
 }
