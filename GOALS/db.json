@@ -125,6 +125,15 @@
       "category": "Vehicle",
       "deadline": "2025-07-03",
       "createdAt": "2025-07-24"
+    },
+    {
+      "id": "1753554389040",
+      "name": "BUYING A CAR",
+      "targetAmount": 2999999999,
+      "savedAmount": 0,
+      "category": "Shopping",
+      "deadline": "2025-07-31",
+      "createdAt": "2025-07-26T18:26:29.040Z"
     }
   ]
 }

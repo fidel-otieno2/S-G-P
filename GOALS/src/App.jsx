@@ -4,63 +4,77 @@ import GoalForm from './components/GoalForm';
 import Overview from './components/Overview';
 import './App.css';
 
-const LOCAL_STORAGE_KEY = 'smart-goal-planner-goals';
+const API_URL = 'http://localhost:3000/goals';
 
 function App() {
   const [goals, setGoals] = useState([]);
   const [showFarGoals, setShowFarGoals] = useState(false);
 
-  // ✅ Load from localStorage on mount
+  // Fetch goals from db.json on mount
   useEffect(() => {
-    const storedGoals = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storedGoals) {
-      setGoals(JSON.parse(storedGoals));
-    }
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setGoals(data))
+      .catch(() => setGoals([]));
   }, []);
 
-  // ✅ Save to localStorage whenever goals change
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(goals));
-  }, [goals]);
-
-  // ✅ Add new goal
-  const handleAddGoal = (newGoal) => {
+  // Add a new goal and save to db.json via json-server
+  const handleAddGoal = async (newGoal) => {
     const newGoalWithId = {
       ...newGoal,
       id: Date.now().toString(),
       createdAt: new Date().toISOString(),
     };
-    setGoals([...goals, newGoalWithId]);
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newGoalWithId),
+    });
+    const savedGoal = await res.json();
+    setGoals([...goals, savedGoal]);
   };
 
-  // ✅ Update existing goal
-  const handleUpdateGoal = (updatedGoal) => {
+  // Update an existing goal in db.json
+  const handleUpdateGoal = async (updatedGoal) => {
+    await fetch(`${API_URL}/${updatedGoal.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedGoal),
+    });
     setGoals(goals.map(goal => goal.id === updatedGoal.id ? updatedGoal : goal));
   };
 
-  // ✅ Delete a goal
-  const handleDeleteGoal = (goalId) => {
+  // Delete a goal from db.json
+  const handleDeleteGoal = async (goalId) => {
+    await fetch(`${API_URL}/${goalId}`, { method: 'DELETE' });
     setGoals(goals.filter(goal => goal.id !== goalId));
   };
 
-  // ✅ Deposit logic
-  const handleDeposit = (goalId, amount) => {
-    const updatedGoals = goals.map(goal => {
-      if (goal.id === goalId) {
-        return { ...goal, savedAmount: goal.savedAmount + amount };
-      }
-      return goal;
+  // Make a deposit to a goal and update db.json
+  const handleDeposit = async (goalId, amount) => {
+    const goal = goals.find(g => g.id === goalId);
+    if (!goal) return;
+    const updatedGoal = {
+      ...goal,
+      savedAmount: goal.savedAmount + amount
+    };
+    await fetch(`${API_URL}/${goalId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedGoal),
     });
-    setGoals(updatedGoals);
+    setGoals(goals.map(g => g.id === goalId ? updatedGoal : g));
   };
 
-  // ✅ Toggle filtering
+  // Filter goals that are 24 days or more from deadline
   const filterFarGoals = () => {
     setShowFarGoals(!showFarGoals);
   };
 
+  // Get filtered goals based on current filter state
   const getFilteredGoals = () => {
     if (!showFarGoals) return goals;
+
     return goals.filter(goal => {
       const daysLeft = Math.floor(
         (new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24)
@@ -92,11 +106,11 @@ function App() {
                 <p>No goals found. Create your first goal to get started!</p>
               </div>
             ) : (
-              <GoalList
-                goals={filteredGoals}
-                onUpdateGoal={handleUpdateGoal}
-                onDeleteGoal={handleDeleteGoal}
-                onDeposit={handleDeposit}
+              <GoalList 
+                goals={filteredGoals} 
+                onUpdateGoal={handleUpdateGoal} 
+                onDeleteGoal={handleDeleteGoal} 
+                onDeposit={handleDeposit} 
               />
             )}
           </div>
