@@ -134,6 +134,24 @@
       "category": "Shopping",
       "deadline": "2025-07-31",
       "createdAt": "2025-07-26T18:26:29.040Z"
+    },
+    {
+      "id": "1753557449789",
+      "name": "the work is done",
+      "targetAmount": 90000,
+      "savedAmount": 0,
+      "category": "Real Estate",
+      "deadline": "2025-07-05",
+      "createdAt": "2025-07-26T19:17:29.789Z"
+    },
+    {
+      "id": "1753567745671",
+      "name": "first workspace",
+      "targetAmount": 8888888,
+      "savedAmount": 0,
+      "category": "Electronics",
+      "deadline": "2025-07-12",
+      "createdAt": "2025-07-26T22:09:05.671Z"
     }
   ]
 }

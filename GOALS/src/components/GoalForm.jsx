@@ -2,13 +2,17 @@ import React, { useState } from "react";
 
 function GoalForm({ onAddGoal }) {
   const [name, setName] = useState("");
-  const [targetAmount, setTargetAmount] = useState(0);
+  const [targetAmount, setTargetAmount] = useState("");
   const [category, setCategory] = useState("");
   const [deadline, setDeadline] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!name || !targetAmount || !category || !deadline) return;
+
     const newGoal = {
+      id: Date.now().toString(), // ✅ Ensures unique ID
       name,
       targetAmount: parseFloat(targetAmount),
       savedAmount: 0,
@@ -16,14 +20,18 @@ function GoalForm({ onAddGoal }) {
       deadline,
       createdAt: new Date().toISOString().slice(0, 10),
     };
-    onAddGoal(newGoal);
+
+    onAddGoal(newGoal); // ✅ Pass to parent
     setName("");
-    setTargetAmount(0);
+    setTargetAmount("");
     setCategory("");
     setDeadline("");
   };
 
-  const categories = ["Travel", "Emergency", "Electronics", "Real Estate", "Vehicle", "Education", "Shopping", "Home", "Retirement", "Other"];
+  const categories = [
+    "Travel", "Emergency", "Electronics", "Real Estate",
+    "Vehicle", "Education", "Shopping", "Home", "Retirement", "Other"
+  ];
 
   return (
     <div className="form-container">
@@ -40,7 +48,7 @@ function GoalForm({ onAddGoal }) {
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="targetAmount">Target Amount (KSh)</label>
           <input
@@ -50,9 +58,10 @@ function GoalForm({ onAddGoal }) {
             value={targetAmount}
             onChange={(e) => setTargetAmount(e.target.value)}
             required
+            min="0"
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="category">Category</label>
           <select
@@ -62,12 +71,12 @@ function GoalForm({ onAddGoal }) {
             required
           >
             <option value="" disabled>Select a category</option>
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
           </select>
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="deadline">Target Date</label>
           <input
@@ -78,8 +87,10 @@ function GoalForm({ onAddGoal }) {
             required
           />
         </div>
-        
-        <button type="submit" className="submit-button">Add New Goal</button>
+
+        <button type="submit" className="submit-button">
+          Add New Goal
+        </button>
       </form>
     </div>
   );
