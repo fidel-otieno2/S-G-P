@@ -86,7 +86,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Smart Goal Planner</h1>
+        <h1><b><i>MARTINS SMART GOAL PLANNER</i></b></h1>
         <div className="header-buttons">
           <button onClick={filterFarGoals} className="filter-button">
             {showFarGoals ? "Show All Goals" : "Show Goals 24+ Days Away"}
